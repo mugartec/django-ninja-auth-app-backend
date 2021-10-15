@@ -1,0 +1,10 @@
+reload = False
+accesslog = '-'
+errorlog = '-'
+loglevel = 'info'
+chdir = '/src'
+user = 'django'
+bind = '0.0.0.0:8000'
+workers = 1
+worker_class = 'uvicorn.workers.UvicornWorker'
+max_requests = 1000

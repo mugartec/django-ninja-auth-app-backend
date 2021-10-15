@@ -1,0 +1,6 @@
+[submodule "src/ninja_auth"]
+	path = src/ninja_auth
+	url = git@github.com:mugartec/django-ninja-auth.git
+[submodule "src/django_ninja_auth"]
+	path = src/django_ninja_auth
+	url = git@github.com:mugartec/django-ninja-auth.git

@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  db:
+    container_name: django-ninja-auth-app-db
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    volumes:
+      - django-ninja-auth-backend-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U $DATABASE_USER -d $DATABASE_NAME
+      interval: 5s
+      timeout: 2s
+      retries: 10
+  backend:
+    depends_on:
+      db:
+        condition: service_healthy
+    container_name: django-ninja-auth-app-backend
+    build: .
+    stdin_open: true
+    volumes:
+      - ./src:/src
+    ports:
+      - 8000:8000
+    environment:
+      - DJANGO_SECRET_KEY
+      - DEBUG
+      - TESTING
+      - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@db:/${DATABASE_NAME}
+      - ALLOWED_HOSTS=[]
+
+volumes:
+  django-ninja-auth-backend-db-volume:
