@@ -1,5 +1,5 @@
 from ninja import NinjaAPI
-from django_ninja_auth.ninja_auth.api import router as auth_router
+from ninja_auth.ninja_auth.api import router as auth_router
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.http import HttpResponse
 
