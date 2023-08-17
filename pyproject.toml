@@ -1,9 +1,0 @@
-[tool.taskipy.tasks]
-test = "docker compose exec backend pytest"
-lint = "docker compose exec backend flake8"
-manage = "docker compose exec backend python manage.py"
-docker = "docker compose exec backend"
-poetry = "docker compose exec backend poetry"
-logs = "docker compose logs --follow backend"
-dev = "docker compose up"
-setup = "cd src && poetry install && poetry shell"

@@ -13,6 +13,9 @@ SECRET_KEY = env.django_secret_key
 DEBUG = env.debug
 ALLOWED_HOSTS = env.allowed_hosts
 FRONTEND_URL = env.frontend_url
+CSRF_TRUSTED_ORIGINS = env.csrf_trusted_origins
+
+print(ALLOWED_HOSTS)
 
 
 # Application definition
@@ -21,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'ninja_auth'
 ]
 
 MIDDLEWARE = [

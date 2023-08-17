@@ -4,17 +4,6 @@
 set -o errexit
 set -o nounset
 
-# Handle sigterm gracefully
-term_handler() {
-  if [ $pid -ne 0 ]; then
-    kill -SIGTERM "$pid"
-    wait "$pid"
-  fi
-  exit 143;
-}
-
-trap term_handler TERM
-
 # This should be taken care of by the deployment tools for production
 if [ "$DEBUG" = "true" ]
 then

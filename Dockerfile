@@ -1,4 +1,4 @@
-FROM python:3.9-slim-buster
+FROM python:3.11-slim-buster
 
 # Ensures our console output looks familiar and is not buffered by Docker, which we don’t want.
 ENV PYTHONUNBUFFERED 1
@@ -21,22 +21,11 @@ RUN apt-get install -yq gcc python3-dev libpq-dev postgresql-client
 # Upgrade pip
 RUN pip install --no-cache-dir --upgrade pip
 
-# Supervisor related stuff
-RUN mkdir /supervisor
-
 #Set working directory
 RUN mkdir -p /app/devops
 
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
-
-# Create non root user and all folders in which he'll have to write
-RUN adduser --system --group django
-RUN mkdir -p /django/logs /django/media /django/static /django/run /django/locale
-RUN touch /django/logs/django.log
-RUN touch /django/logs/queries.log
-RUN chown django:django /django/logs/django.log /django/media /django/static/ /django/locale /django/logs/queries.log
-RUN chown -R django /django
 
 # Copy poetry files first and install dependencies
 # This is done earlier to avoid repeating when building the image

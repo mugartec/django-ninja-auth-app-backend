@@ -31,7 +31,8 @@ services:
       - DEBUG
       - TESTING
       - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@db:/${DATABASE_NAME}
-      - ALLOWED_HOSTS=[]
+      - ALLOWED_HOSTS
+      - CSRF_TRUSTED_ORIGINS
 
 volumes:
   django-ninja-auth-backend-db-volume:
